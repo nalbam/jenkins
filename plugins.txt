@@ -1,1 +1,7 @@
-blueocean:latest
+blueocean:1.4.2
+openshift-pipeline:1.0.54
+openshift-sync:1.0.8
+openshift-client:1.0.8
+openshift-deployer:1.2.0
+openshift-login:1.0.5
+pmd:3.50
