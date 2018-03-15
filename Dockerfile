@@ -4,6 +4,5 @@ FROM jenkins/jenkins:lts
 
 MAINTAINER me@nalbam.com
 
-VOLUME /work
-
-WORKDIR /work
+EXPOSE 8080
+EXPOSE 50000
