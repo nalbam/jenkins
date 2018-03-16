@@ -5,6 +5,7 @@ ldap:latest
 ant:latest
 git:latest
 ssh-slaves:latest
+bouncycastle-api:latest
 cloudbees-folder:latest
 build-timeout:latest
 credentials-binding:latest
