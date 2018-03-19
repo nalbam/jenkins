@@ -35,3 +35,5 @@ htmlpublisher:latest
 jacoco:latest
 pipeline-utility-steps:latest
 pmd:latest
+docker-plugin:latest
+docker-slaves:latest
