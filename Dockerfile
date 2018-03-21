@@ -1,7 +1,5 @@
 # Dockerfile
 
-# jenkins-version: 2.107.1-2
-
 FROM jenkins/jenkins:lts
 
 MAINTAINER me@nalbam.com
