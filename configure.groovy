@@ -5,7 +5,7 @@ def env = System.getenv()
 def jenkins = Jenkins.getInstance()
 
 // Executors
-instance.setNumExecutors(0)
+jenkins.setNumExecutors(0)
 
 // JNLP4
 Set<String> agentProtocolsList = ['JNLP4-connect', 'Ping']
@@ -15,10 +15,7 @@ jenkins.setAgentProtocols(agentProtocolsList)
 jenkins.setCrumbIssuer(new hudson.security.csrf.DefaultCrumbIssuer(true))
 
 // Private Realm
-jenkins.setSecurityRealm(new hudson.security.GlobalMatrixAuthorizationStrategy(false))
-
-// Matrix Authorization
-//jenkins.setAuthorizationStrategy(new hudson.security.GlobalMatrixAuthorizationStrategy())
+jenkins.setSecurityRealm(new HudsonPrivateSecurityRealm(false))
 
 // Logged In User Access
 def strategy = new hudson.security.FullControlOnceLoggedInAuthorizationStrategy()
