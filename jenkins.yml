@@ -1,18 +1,18 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
- name: jenkins-ci
+ name: jenkins
 spec:
  replicas: 1
  template:
   metadata:
    labels:
-    name: jenkins-ci
+    name: jenkins
   spec:
    imagePullSecrets:
     - name: regsecret
    containers:
-   - name: jenkins-ci
+   - name: jenkins
      imagePullPolicy: Always
      image: nalbam/jenkins:latest
      ports:
@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: jenkins-ci-lb
+  name: jenkins-lb
 spec:
  type: LoadBalancer
  ports:
@@ -52,4 +52,4 @@ spec:
      port: 50000
      targetPort: 50000
  selector:
-   name: jenkins-ci
+   name: jenkins
