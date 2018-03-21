@@ -8,7 +8,7 @@ def jenkins = Jenkins.getInstance()
 jenkins.setNumExecutors(0)
 
 // Disable old Non-Encrypted protocols
-HashSet<String> protocols = new HashSet<>(instance.getAgentProtocols())
+HashSet<String> protocols = new HashSet<>(jenkins.getAgentProtocols())
 protocols.removeAll(Arrays.asList("JNLP3-connect", "JNLP2-connect", "JNLP-connect", "CLI-connect"))
 jenkins.setAgentProtocols(protocols)
 
