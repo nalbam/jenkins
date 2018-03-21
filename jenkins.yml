@@ -1,5 +1,5 @@
-apiVersion: extensions/v1beta2
 kind: Deployment
+apiVersion: apps/v1beta2
 metadata:
  name: jenkins
 spec:
@@ -36,10 +36,10 @@ spec:
        hostPath:
          path: /var/jenkins_home
 
-apiVersion: v1
 kind: Service
+apiVersion: v1
 metadata:
-  name: jenkins-lb
+  name: jenkins
 spec:
  type: LoadBalancer
  ports:
