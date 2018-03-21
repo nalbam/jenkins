@@ -7,11 +7,15 @@ def jenkins = Jenkins.getInstance()
 // Executors
 jenkins.setNumExecutors(0)
 
-// JNLP4
-Set<String> agentProtocolsList = ['JNLP4-connect', 'Ping']
-jenkins.setAgentProtocols(agentProtocolsList)
+// Disable old Non-Encrypted protocols
+HashSet<String> protocols = new HashSet<>(instance.getAgentProtocols())
+protocols.removeAll(Arrays.asList("JNLP3-connect", "JNLP2-connect", "JNLP-connect", "CLI-connect"))
+jenkins.setAgentProtocols(protocols)
 
-// CSRF
+// Disable remoting
+jenkins.getDescriptor("jenkins.CLI").get().setEnabled(false)
+
+// CSRF Protection
 jenkins.setCrumbIssuer(new hudson.security.csrf.DefaultCrumbIssuer(true))
 
 // Private Realm
