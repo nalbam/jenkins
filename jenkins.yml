@@ -24,13 +24,13 @@ spec:
           timeoutSeconds: 5
           successThreshold: 2
           failureThreshold: 5
-        volumeMounts:
-        - mountPath: /var/jenkins_home
-          name: jenkins-home
-      volumes:
-      - name: jenkins-home
-        hostPath:
-          path: /var/jenkins_home
+#        volumeMounts:
+#        - mountPath: /var/jenkins_home
+#          name: jenkins-home
+#      volumes:
+#      - name: jenkins-home
+#        hostPath:
+#          path: /var/jenkins_home
 # [END jenkins_deployment]
 # [START jenkins_service]
 ---
