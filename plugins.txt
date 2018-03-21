@@ -21,11 +21,6 @@ pam-auth:latest
 email-ext:latest
 mailer:latest
 blueocean:latest
-openshift-pipeline:latest
-openshift-sync:latest
-openshift-client:latest
-openshift-deployer:latest
-openshift-login:latest
 analysis-core:latest
 analysis-collector:latest
 checkstyle:latest

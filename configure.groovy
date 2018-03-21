@@ -28,4 +28,7 @@ user.save()
 // Authorization
 jenkins.setAuthorizationStrategy(new hudson.security.FullControlOnceLoggedInAuthorizationStrategy())
 
+// Enable Agent to master security subsystem
+jenkins.getInjector().getInstance(jenkins.security.s2m.AdminWhitelistRule.class).setMasterKillSwitch(false)
+
 jenkins.save()
