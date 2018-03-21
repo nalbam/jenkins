@@ -12,7 +12,6 @@ ENV JENKINS_PASS password
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-COPY init-user.groovy /usr/share/jenkins/ref/init.groovy.d/
-COPY init-executors.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY configure.groovy /usr/share/jenkins/ref/init.groovy.d/
 
 ENTRYPOINT ["/sbin/tini", "--", "/usr/local/bin/jenkins.sh"]
