@@ -1,5 +1,6 @@
 # jenkins
 
+## usage
 ```
 sudo docker pull nalbam/jenkins:latest
 
@@ -7,6 +8,8 @@ sudo docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/
 
 kubectl create -f https://raw.githubusercontent.com/nalbam/jenkins/master/jenkins.yml
 ```
+
+## reference
  * https://github.com/jenkinsci/docker/blob/master/Dockerfile
  * https://github.com/jenkinsci/docker/issues/310
  * https://github.com/samrocketman/jenkins-bootstrap-shared/tree/master/scripts
