@@ -15,7 +15,7 @@ jenkins.setAgentProtocols(agentProtocolsList)
 jenkins.setCrumbIssuer(new hudson.security.csrf.DefaultCrumbIssuer(true))
 
 // Private Realm
-jenkins.setSecurityRealm(new HudsonPrivateSecurityRealm(false))
+jenkins.setSecurityRealm(new hudson.security.HudsonPrivateSecurityRealm(false))
 
 // Logged In User Access
 def strategy = new hudson.security.FullControlOnceLoggedInAuthorizationStrategy()
