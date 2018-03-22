@@ -11,17 +11,17 @@ volumes: [
   node(label) {
     stage('Run docker') {
       container('docker') {
-        sh "docker images"
+        sh 'docker images'
       }
     }
     stage('Run kubectl') {
       container('kubectl') {
-        sh "kubectl get pods"
+        sh 'kubectl get pods'
       }
     }
     stage('Run helm') {
       container('helm') {
-        sh "helm list"
+        sh 'helm list'
       }
     }
   }
