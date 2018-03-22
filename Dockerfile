@@ -12,4 +12,4 @@ ENV JENKINS_PASS password
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
-COPY configure.groovy /usr/share/jenkins/ref/init.groovy.d/
+COPY configure-security.groovy /usr/share/jenkins/ref/init.groovy.d/
