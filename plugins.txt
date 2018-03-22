@@ -1,5 +1,4 @@
 github:latest
-github-branch-source
 gradle:latest
 ldap:latest
 ant:latest
