@@ -1,21 +1,16 @@
-#!groovy
-
 def label = "worker-${UUID.randomUUID().toString()}"
 
 podTemplate(label: label, containers: [
-  containerTemplate(name: 'executor', image: '$EXECUTOR_IMAGE', command: 'cat', ttyEnabled: true)
-],
-volumes: [
-  hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
-]) {
+    containerTemplate(name: 'executor', image: '$EXECUTOR_IMAGE', command: 'cat', ttyEnabled: true)
+  ]) {
   node(label) {
     stage('Checkout') {
       checkout([$class: 'GitSCM',
-            branches: [[name: '$BRANCH']],
-            doGenerateSubmoduleConfigurations: false,
-            extensions: [],
-            submoduleCfg: [],
-            userRemoteConfigs: [[url: '$REPOSITORY_URL']]]
+        branches: [[name: '$BRANCH']],
+        doGenerateSubmoduleConfigurations: false,
+        extensions: [],
+        submoduleCfg: [],
+        userRemoteConfigs: [[url: '$REPOSITORY_URL']]]
       )
     }
 
