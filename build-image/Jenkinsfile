@@ -19,13 +19,13 @@ volumes: [
 
     stage("Build Image") {
       container("executor") {
-        sh "docker build -t $IMAGE_REPO:$IMAGE_TAG ."
+        sh "docker build -t $IMAGE_REPO/$IMAGE_NAME:$IMAGE_TAG ."
       }
     }
 
     stage("Push Image") {
       container("executor") {
-        sh "docker push $IMAGE_REPO:$IMAGE_TAG"
+        sh "docker push $IMAGE_REPO/$IMAGE_NAME:$IMAGE_TAG"
       }
     }
   }
