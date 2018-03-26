@@ -1,6 +1,6 @@
 # Dockerfile
 
-FROM jenkins/jenkins:alpine
+FROM jenkins/jenkins:lts-alpine
 
 MAINTAINER me@nalbam.com
 
