@@ -1,5 +1,9 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
+properties([
+  buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
+])
+
 podTemplate(label: label, containers: [
   containerTemplate(name: "docker", image: "docker", command: "cat", ttyEnabled: true),
   containerTemplate(name: "kubectl", image: "lachlanevenson/k8s-kubectl:v1.8.8", command: "cat", ttyEnabled: true),

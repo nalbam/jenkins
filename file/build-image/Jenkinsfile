@@ -1,5 +1,9 @@
 def label = "worker-${UUID.randomUUID().toString()}"
 
+properties([
+  buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
+])
+
 podTemplate(label: label, containers: [
   containerTemplate(name: "executor", image: "$EXECUTOR_IMAGE", command: "cat", ttyEnabled: true)
 ],
@@ -25,7 +29,8 @@ volumes: [
 
     stage("Push Image") {
       container("executor") {
-        sh "docker push $IMAGE_REPO/$IMAGE_NAME:$IMAGE_TAG"
+        //sh "docker push $IMAGE_REPO/$IMAGE_NAME:$IMAGE_TAG"
+        sh "gcloud docker -- push $IMAGE_REPO/$IMAGE_NAME:$IMAGE_TAG"
       }
     }
   }

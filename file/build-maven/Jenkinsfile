@@ -21,9 +21,15 @@ volumes: [
       )
     }
 
-    stage("Run Command") {
+    stage("Test") {
       container("executor") {
-        sh "$COMMAND"
+        sh "mvn test"
+      }
+    }
+
+    stage("Package") {
+      container("executor") {
+        sh "mvn package -DskipTests"
       }
     }
   }
