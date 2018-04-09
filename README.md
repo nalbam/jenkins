@@ -8,7 +8,7 @@ sudo docker pull nalbam/jenkins:slim   (341MB)
 
 sudo docker run --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home nalbam/jenkins:slim
 
-kubectl create -f https://raw.githubusercontent.com/nalbam/jenkins/master/jenkins.yml
+kubectl apply -f https://raw.githubusercontent.com/nalbam/jenkins/master/jenkins.yml
 ```
 
 ## reference
