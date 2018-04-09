@@ -4,6 +4,10 @@ FROM jenkins/jenkins:lts
 
 MAINTAINER me@nalbam.com
 
+USER root
+RUN usermod -a -G staff jenkins
+USER jenkins
+
 ENV JENKINS_USER admin
 ENV JENKINS_PASS password
 
