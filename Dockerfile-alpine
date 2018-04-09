@@ -15,6 +15,5 @@ COPY extra/plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/ref/plugins.txt
 
 USER root
-RUN chown -R 1000 /var/jenkins_home && \
-    chown -R 1000 /home/jenkins
+RUN chown -R 1000 /var/jenkins_home
 USER jenkins
