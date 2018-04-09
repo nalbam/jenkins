@@ -5,7 +5,7 @@ def env = System.getenv()
 def jenkins = Jenkins.getInstance()
 
 // Executors
-jenkins.setNumExecutors(2)
+jenkins.setNumExecutors(3)
 
 // Disable old Non-Encrypted protocols
 HashSet<String> protocols = new HashSet<>(jenkins.getAgentProtocols())
