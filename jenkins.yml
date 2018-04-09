@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: nalbam/jenkins:slim
+        image: nalbam/jenkins:alpine
         ports:
         - containerPort: 8080
         - containerPort: 50000
@@ -30,17 +30,15 @@ spec:
         volumeMounts:
         - name: jenkins-home
           mountPath: /var/jenkins_home
-        - name: jenkins-m2
-          mountPath: /home/jenkins/.m2
       volumes:
       - name: jenkins-home
-        emptyDir: {}
-      - name: jenkins-m2
-        emptyDir: {}
+        persistentVolumeClaim:
+          claimName: jenkins-home-claim
 #        hostPath:
-#          path: /var/jenkins_home
+#          path: /data/pv/jenkins_home
 #        persistentVolumeClaim:
 #          claimName: jenkins-home-claim
+#        emptyDir: {}
 
 ---
 # ------------------- Service (jenkins) ------------------- #
@@ -94,17 +92,17 @@ spec:
           serviceName: jenkins
           servicePort: 80
 
-#---
-## ------------------- PersistentVolumeClaim ------------------- #
-#
-#kind: PersistentVolumeClaim
-#apiVersion: v1
-#metadata:
-#  name: jenkins-home-claim
-#spec:
-#  storageClassName: manual
-#  accessModes:
-#    - ReadWriteOnce
-#  resources:
-#    requests:
-#      storage: 8Gi
+---
+# ------------------- PersistentVolumeClaim ------------------- #
+
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: jenkins-home-claim
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
