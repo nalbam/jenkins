@@ -1,10 +1,13 @@
-# [START jenkins_deployment]
-apiVersion: extensions/v1beta1
+# ------------------- Deployment ------------------- #
+
 kind: Deployment
+apiVersion: extensions/v1beta1
 metadata:
   name: jenkins
 spec:
-  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
   template:
     metadata:
       labels:
@@ -12,7 +15,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: nalbam/jenkins:latest
+        image: nalbam/jenkins:slim
         ports:
         - containerPort: 8080
         - containerPort: 50000
@@ -24,42 +27,84 @@ spec:
           timeoutSeconds: 5
           successThreshold: 2
           failureThreshold: 5
-#        volumeMounts:
-#        - mountPath: /var/jenkins_home
-#          name: jenkins-home
-#      volumes:
-#      - name: jenkins-home
+        volumeMounts:
+        - name: jenkins-home
+          mountPath: /var/jenkins_home
+        - name: jenkins-m2
+          mountPath: /home/jenkins/.m2
+      volumes:
+      - name: jenkins-home
+        emptyDir: {}
+      - name: jenkins-m2
+        emptyDir: {}
 #        hostPath:
 #          path: /var/jenkins_home
-# [END jenkins_deployment]
-# [START jenkins_service]
+#        persistentVolumeClaim:
+#          claimName: jenkins-home-claim
+
 ---
-  kind: Service
-  apiVersion: v1
-  metadata:
-    name: jenkins
-  spec:
-    type: LoadBalancer
-    selector:
-      app: jenkins
-    ports:
-      - name: jenkins
-        protocol: TCP
-        port: 8080
-        targetPort: 8080
-# [END jenkins_service]
-# [START jenkins_service_slave]
+# ------------------- Service (jenkins) ------------------- #
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins
+spec:
+  type: NodePort
+  selector:
+    app: jenkins
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
+    targetPort: 8080
+
 ---
-  kind: Service
-  apiVersion: v1
-  metadata:
-    name: jenkins-slave
-  spec:
-    selector:
-      app: jenkins
-    ports:
-      - name: slave
-        protocol: TCP
-        port: 50000
-        targetPort: 50000
-# [END jenkins_service_slave]
+# ------------------- Service (slave) ------------------- #
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-slave
+spec:
+  selector:
+    app: jenkins
+  ports:
+  - name: slave
+    protocol: TCP
+    port: 50000
+    targetPort: 50000
+
+---
+# ------------------- Ingress ------------------- #
+
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  name: jenkins-slave
+spec:
+  rules:
+  - host: jenkins.apps.nalbam.com
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jenkins
+          servicePort: 80
+
+#---
+## ------------------- PersistentVolumeClaim ------------------- #
+#
+#kind: PersistentVolumeClaim
+#apiVersion: v1
+#metadata:
+#  name: jenkins-home-claim
+#spec:
+#  storageClassName: manual
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 8Gi
