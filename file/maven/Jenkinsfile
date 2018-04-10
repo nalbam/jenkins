@@ -1,0 +1,25 @@
+#!groovy
+
+properties([
+    buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
+])
+
+node {
+    stage('Checkout') {
+        git 'https://github.com/nalbam/nalbam-common.git'
+    }
+
+    stage('Build') {
+        mvn 'clean package'
+    }
+
+    stage('Result') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archive 'target/*.jar'
+    }
+}
+
+void mvn(args) {
+    def mvnHome = tool 'M3'
+    sh "${mvnHome}/bin/mvn ${args}"
+}
