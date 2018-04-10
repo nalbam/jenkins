@@ -4,6 +4,9 @@ FROM jenkins/jenkins:lts-alpine
 
 MAINTAINER me@nalbam.com
 
+ENV TZ=Asia/Seoul
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 ENV JENKINS_USER admin
 ENV JENKINS_PASS password
 
