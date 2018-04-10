@@ -1,6 +1,6 @@
-kubernetes:latest
-workflow-job:latest
-workflow-aggregator:latest
 credentials-binding:latest
-packer:latest
 git:latest
+kubernetes:latest
+packer:latest
+workflow-aggregator:latest
+workflow-job:latest
