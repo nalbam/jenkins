@@ -9,6 +9,8 @@ USER root
 ENV TZ=Asia/Seoul
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+#USER jenkins
+
 ENV JENKINS_USER admin
 ENV JENKINS_PASS password
 
