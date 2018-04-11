@@ -28,5 +28,9 @@ volumes: [
         sh "mvn package -DskipTests"
       }
     }
+    stage("Result") {
+      junit "**/target/surefire-reports/TEST-*.xml"
+      archive "target/*.jar"
+    }
   }
 }
