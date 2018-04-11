@@ -1,9 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
-
 properties([
   buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
 ])
-
 podTemplate(label: label, containers: [
   containerTemplate(name: "docker", image: "docker", command: "cat", ttyEnabled: true),
   containerTemplate(name: "kubectl", image: "lachlanevenson/k8s-kubectl:latest", command: "cat", ttyEnabled: true),
@@ -23,7 +21,7 @@ volumes: [
     }
     stage("Run kubectl") {
       container("kubectl") {
-        sh "kubectl get pods"
+        sh "kubectl get pod,svc"
       }
     }
     stage("Run helm") {

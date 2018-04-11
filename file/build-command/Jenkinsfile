@@ -1,9 +1,7 @@
 def label = "worker-${UUID.randomUUID().toString()}"
-
 properties([
   buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
 ])
-
 podTemplate(label: label, containers: [
   containerTemplate(name: "executor", image: "$EXECUTOR_IMAGE", command: "cat", ttyEnabled: true)
 ],
@@ -20,8 +18,7 @@ volumes: [
         userRemoteConfigs: [[url: "$REPOSITORY_URL"]]]
       )
     }
-
-    stage("Run Command") {
+    stage("Command") {
       container("executor") {
         sh "$COMMAND"
       }
