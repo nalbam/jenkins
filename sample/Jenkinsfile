@@ -3,7 +3,7 @@ properties([
   buildDiscarder(logRotator(daysToKeepStr: "60", numToKeepStr: "10"))
 ])
 podTemplate(label: label, containers: [
-  containerTemplate(name: "docker", image: "docker", command: "cat", ttyEnabled: true),
+  containerTemplate(name: "builder", image: "nalbam/builder:alpine", command: "cat", ttyEnabled: true),
   containerTemplate(name: "kubectl", image: "lachlanevenson/k8s-kubectl:latest", command: "cat", ttyEnabled: true),
   containerTemplate(name: "helm", image: "lachlanevenson/k8s-helm:latest", command: "cat", ttyEnabled: true)
 ],
@@ -15,7 +15,7 @@ volumes: [
       sh "uname -a"
     }
     stage("Run docker") {
-      container("docker") {
+      container("builder") {
         sh "docker images"
       }
     }
