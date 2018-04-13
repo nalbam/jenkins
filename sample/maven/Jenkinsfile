@@ -4,7 +4,7 @@ properties([
 ])
 node {
     stage('Checkout') {
-        git 'https://github.com/nalbam/sample-spring.git'
+        git 'https://github.com/nalbam/nalbam-common.git'
     }
     stage('Test') {
         mvn 'test'
