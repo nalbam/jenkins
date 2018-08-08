@@ -2,8 +2,6 @@
 
 FROM jenkins/jenkins:lts-alpine
 
-MAINTAINER me@nalbam.com
-
 USER root
 
 ENV TZ=Asia/Seoul

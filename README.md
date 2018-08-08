@@ -1,7 +1,8 @@
 # jenkins
 
 ## usage
-```
+
+```bash
 sudo docker pull nalbam/jenkins:latest (516MB)
 sudo docker pull nalbam/jenkins:alpine (316MB)
 sudo docker pull nalbam/jenkins:slim   (341MB)
@@ -12,8 +13,9 @@ kubectl apply -f https://raw.githubusercontent.com/nalbam/jenkins/master/jenkins
 ```
 
 ## reference
- * https://github.com/jenkinsci/docker
- * https://github.com/jenkinsci/docker/issues/310
- * https://github.com/samrocketman/jenkins-bootstrap-shared/tree/master/scripts
- * https://blog.kublr.com/using-jenkins-and-kubernetes-for-continuous-integration-and-delivery-4e4341aff013
- * https://akomljen.com/set-up-jenkins-ci-cd-pipeline-with-kubernetes/
+
+* <https://github.com/jenkinsci/docker>
+* <https://github.com/jenkinsci/docker/issues/310>
+* <https://github.com/samrocketman/jenkins-bootstrap-shared/tree/master/scripts>
+* <https://blog.kublr.com/using-jenkins-and-kubernetes-for-continuous-integration-and-delivery-4e4341aff013>
+* <https://akomljen.com/set-up-jenkins-ci-cd-pipeline-with-kubernetes/>

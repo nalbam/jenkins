@@ -2,8 +2,6 @@
 
 FROM jenkins/jenkins:lts-slim
 
-MAINTAINER me@nalbam.com
-
 USER root
 
 ENV TZ=Asia/Seoul
