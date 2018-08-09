@@ -4,7 +4,7 @@ properties([
 ])
 podTemplate(label: label,
 containers: [
-  containerTemplate(name: "builder", image: "quay.io/nalbam/builder", command: "cat", ttyEnabled: true),
+  containerTemplate(name: "builder", image: "nalbam/builder", command: "cat", ttyEnabled: true),
   containerTemplate(name: "docker", image: "docker", command: "cat", ttyEnabled: true)
 ],
 volumes: [
