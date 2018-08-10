@@ -1,6 +1,0 @@
-credentials-binding:latest
-git:latest
-kubernetes:latest
-packer:latest
-workflow-aggregator:latest
-workflow-job:latest
